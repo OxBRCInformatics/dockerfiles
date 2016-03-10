@@ -1,8 +1,9 @@
-FROM frolvlad/alpine-oraclejdk8:latest
+FROM develar/java:latest
+MAINTAINER Oliver Freeman <oliver.freeman@ndm.ox.ac.uk>
 
 # Add bash capability
-RUN apk update
-RUN apk add bash curl
+RUN apk update && \
+    apk add bash
 
 # Application directory
 RUN mkdir -p /java
