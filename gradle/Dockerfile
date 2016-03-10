@@ -1,9 +1,6 @@
 FROM olliefreeman/java
 MAINTAINER Oliver Freeman <oliver.freeman@ndm.ox.ac.uk>
 
-RUN apk update
-RUN apk add curl
-
 #Install Gradle
 ENV GRADLE_VERSION 2.11
 

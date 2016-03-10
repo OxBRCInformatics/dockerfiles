@@ -2,7 +2,7 @@ FROM frolvlad/alpine-oraclejdk8:latest
 
 # Add bash capability
 RUN apk update
-RUN apk add bash
+RUN apk add bash curl
 
 # Application directory
 RUN mkdir -p /java
