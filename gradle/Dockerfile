@@ -1,4 +1,4 @@
-FROM frolvlad/alpine-oraclejdk8
+FROM olliefreeman/java
 MAINTAINER Oliver Freeman <oliver.freeman@ndm.ox.ac.uk>
 
 RUN apk update
