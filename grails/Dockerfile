@@ -1,4 +1,4 @@
-FROM olliefreeman/gradle
+FROM olliefreeman/java
 MAINTAINER Oliver Freeman <oliver.freeman@ndm.ox.ac.uk>
 
 # Install Grails
@@ -13,11 +13,16 @@ RUN curl -sLO https://github.com/grails/grails-core/releases/download/v$GRAILS_V
 ENV GRAILS_HOME /usr/lib/jvm/grails
 ENV PATH $GRAILS_HOME/bin:$PATH
 
-# Application directory
-RUN mkdir -p /grails
-
 # Set Workdir
+WORKDIR /
+
+# Create a test app inside the working directory
+RUN grails create-app grails
 WORKDIR /grails
+
+# Load the default dependencies
+RUN grails dependency-report
 
 # Set Default Behavior
 ENTRYPOINT ["grails"]
+CMD ["run-app"]
