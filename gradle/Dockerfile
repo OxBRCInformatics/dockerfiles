@@ -21,3 +21,4 @@ WORKDIR /gradle
 
 # Set Default Behavior
 ENTRYPOINT ["gradle"]
+CMD ["-version"]
