@@ -8,8 +8,9 @@ RUN mkdir -p /opt
 ENV TOMCAT_MAJOR=7 \
     TOMCAT_VERSION=7.0.68 \
     TOMCAT_HOME=/opt/tomcat \
-    CATALINA_HOME=/opt/tomcat \
-    PATH=$PATH:$CATALINA_HOME/bin
+    CATALINA_HOME=/opt/tomcat
+
+ENV PATH $PATH:$CATALINA_HOME/bin
 
 RUN apk upgrade --update && \
     apk add --update curl && \
@@ -22,6 +23,8 @@ RUN apk upgrade --update && \
     rm -rf /tmp/* /var/cache/apk/*
 
 COPY ./run.sh /usr/local/bin/run-tomcat
+RUN chmod +x /usr/local/bin/*
+
 EXPOSE 8080
 
 # override ENTRYPOINT defined in olliefreeman/java:jdk8
