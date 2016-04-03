@@ -5,7 +5,7 @@
 FROM alpine:3.3
 MAINTAINER James Welch <james.welch@ndm.ox.ac.uk>
 
-RUN apk update && apk add supervisor perl cyrus-sasl mailx postfix bash
+RUN apk update && apk add supervisor perl cyrus-sasl mailx postfix bash openrc icu-dev
 
 #RUN yum install -y epel-release && yum update -y && \
 #    yum install -y cyrus-sasl cyrus-sasl-plain cyrus-sasl-md5 mailx \ 
@@ -16,7 +16,7 @@ RUN sed -i -e 's/inet_interfaces = localhost/inet_interfaces = all/g' /etc/postf
 
 COPY run.sh /
 RUN chmod +x /run.sh
-COPY etc/supervisord.d/postfix.ini /etc/supervisord.d/
+COPY etc/supervisord.d/postfix.ini /etc/supervisor.d/
 RUN newaliases
 
 EXPOSE 25
