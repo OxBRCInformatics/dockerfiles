@@ -1,4 +1,4 @@
-FROM olliefreeman/java:8
+FROM oxbrcinformatics/java:jdk8
 MAINTAINER Oliver Freeman <oliver.freeman@ndm.ox.ac.uk>
 
 # Install Grails

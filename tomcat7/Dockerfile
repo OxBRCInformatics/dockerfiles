@@ -1,6 +1,6 @@
 # Credit to haraldkoch/alpine-tomcat7 this is the dockerfile but using
 # oracle jre7 and 8 rather than openjdk
-FROM olliefreeman/java:jre7
+FROM oxbrcinformatics/java:jre7
 MAINTAINER Oliver Freeman <oliver.freeman@ndm.ox.ac.uk>
 
 RUN apk add --update curl ca-certificates
