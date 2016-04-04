@@ -22,7 +22,12 @@ echo "smtp_sasl_auth_enable = yes" >> /etc/postfix/main.cf
 echo "smtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd" >> /etc/postfix/main.cf
 echo "smtp_sasl_security_options = noanonymous" >> /etc/postfix/main.cf
 
+echo "smtpd_recipient_restrictions = permit_mynetworks permit_sasl_authenticated" >> /etc/postfix/main.cf
+echo "mynetworks = 172.0.0.0/8" >> /etc/postfix/main.cf
+echo "smtpd_delay_reject = yes" >> /etc/postfix/main.cf
+
 echo "[$SMTP_SERVER]:587 $SMTP_USERNAME:$SMTP_PASSWORD" >> /etc/postfix/sasl_passwd
+
 mkdir /var/log/supervisor
 
 postmap /etc/postfix/sasl_passwd
