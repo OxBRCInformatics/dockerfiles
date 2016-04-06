@@ -18,7 +18,7 @@ RUN apk add --update supervisor perl cyrus-sasl mailx postfix bash openrc icu-de
            -e 's_\*.emerg.*\*_*.emerg    :omusrmsg:*_' /etc/rsyslog.conf && \
     newaliases
 
-COPY bin /usr/local/bin
+COPY postfix.sh /usr/local/bin
 COPY etc/supervisord.d /etc/supervisor.d
 
 RUN chmod +x /usr/local/bin/*
