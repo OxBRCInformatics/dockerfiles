@@ -5,22 +5,26 @@
 FROM alpine:3.3
 MAINTAINER James Welch <james.welch@ndm.ox.ac.uk>
 
-#RUN yum install -y epel-release && yum update -y && \
-#    yum install -y cyrus-sasl cyrus-sasl-plain cyrus-sasl-md5 mailx \
-#    perl supervisor postfix
-
-RUN apk add --update supervisor perl cyrus-sasl mailx postfix bash openrc icu-dev && \
-    sed -i -e "s/^nodaemon=false/nodaemon=true/" /etc/supervisord.conf && \
-    sed -i -e 's/inet_interfaces = localhost/inet_interfaces = all/g' /etc/postfix/main.cf
-
-COPY run.sh /
-COPY etc/supervisord.d/postfix.ini /etc/supervisor.d/
-
-RUN chmod +x /run.sh && \
+RUN apk add --update supervisor perl cyrus-sasl mailx postfix bash openrc icu-dev rsyslog && \
+    mkdir -p /var/log/supervisor /var/spool/mail && \
+    postconf inet_interfaces=all \
+        smtputf8_enable=no \
+        'myorigin=$mydomain' \
+        mail_spool_directory=/var/spool/mail \
+        mynetworks_style=class \
+        smtp_tls_security_level=may && \
+    sed -i -e 's:-/var/log/messages:-/var/log/messages.log:' \
+           -e 's:-/var/log/maillog:-/var/log/mail.log:' \
+           -e 's_\*.emerg.*\*_*.emerg    :omusrmsg:*_' /etc/rsyslog.conf && \
     newaliases
 
+COPY bin /usr/local/bin
+COPY etc/supervisord.d /etc/supervisor.d
+
+RUN chmod +x /usr/local/bin/*
+
 EXPOSE 25
-#ENTRYPOINT ["/run.sh"]
-CMD ["/run.sh"]
+ENTRYPOINT ["supervisord"]
+CMD ["-c", "/etc/supervisord.conf"]
 
 
