@@ -28,6 +28,8 @@ RUN chmod +x /usr/local/bin/*
 
 EXPOSE 8080
 
+VOLUME /opt/tomcat/logs
+
 # override ENTRYPOINT defined in olliefreeman/java:jdk8
 ENTRYPOINT [ "/bin/sh", "-c" ]
 CMD ["/usr/local/bin/run-tomcat"]
