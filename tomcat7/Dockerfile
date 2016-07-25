@@ -6,7 +6,7 @@ MAINTAINER Oliver Freeman <oliver.freeman@ndm.ox.ac.uk>
 RUN apk add --update curl ca-certificates
 RUN mkdir -p /opt
 ENV TOMCAT_MAJOR=7 \
-    TOMCAT_VERSION=7.0.68 \
+    TOMCAT_VERSION=7.0.70 \
     TOMCAT_HOME=/opt/tomcat \
     CATALINA_HOME=/opt/tomcat
 
