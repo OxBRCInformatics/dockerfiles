@@ -1,4 +1,4 @@
-FROM frolvlad/alpine-oraclejdk8
+FROM anapsix/alpine-java:8_jdk
 MAINTAINER Oliver Freeman <oliver.freeman@ndm.ox.ac.uk>
 
 # Add bash capability

@@ -7,7 +7,7 @@ RUN apk add --update curl ca-certificates
 
 RUN mkdir -p /opt
 ENV TOMCAT_MAJOR=8 \
-    TOMCAT_VERSION=8.5.4 \
+    TOMCAT_VERSION=8.5.30 \
     TOMCAT_HOME=/opt/tomcat \
     CATALINA_HOME=/opt/tomcat
 

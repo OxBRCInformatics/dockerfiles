@@ -1,4 +1,4 @@
-FROM develar/java:latest
+FROM anapsix/alpine-java:8
 MAINTAINER Oliver Freeman <oliver.freeman@ndm.ox.ac.uk>
 
 # Add bash capability
